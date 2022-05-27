@@ -1,0 +1,92 @@
+.comment-container {
+  width: 100%;
+  margin-top: -20px;
+  animation: slideDown 500ms ease-in-out;
+}
+
+.comments-line {
+  display: flex;
+  align-items: center;
+  padding: 0px 20px;
+  font-weight: 600;
+}
+
+.comment-content-container {
+  display: flex;
+  align-items: center;
+  flex: 1;
+  justify-content: space-between;
+}
+
+.comments-content {
+  font-size: 13px;
+  font-weight: 400;
+  margin-left: 20px;
+}
+
+.delete-comment-icon {
+  cursor: pointer;
+  width: 20px;
+}
+
+@keyframes slideDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-60px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.popup-message-main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.popup-message-container {
+  background-color: white;
+  padding: 50px;
+  border-radius: 10px;
+}
+
+.popup-message {
+  font-weight: 600;
+  font-size: 20px;
+  margin-bottom: 50px;
+}
+
+.popup-btns-container {
+  display: flex;
+  justify-content: space-around;
+}
+
+.pop-up-btns {
+  font-weight: 700;
+  padding: 10px;
+  font-size: 15px;
+  width: 30%;
+  cursor: pointer;
+  border: none;
+  border-radius: 5px;
+}
+
+.pop-up-btns:hover {
+  background-color: #d3d3d3;
+  color: #1cac78;
+}
+
+.confirm:hover {
+  color: red;
+}

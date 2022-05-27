@@ -1,0 +1,129 @@
+body {
+  background-color: #f8f8f8;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 15px;
+}
+
+.main-container {
+  display: flex;
+  padding: 2%;
+  margin-top: 50px;
+  justify-content: center;
+}
+
+.right-container-main {
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  padding: 20px 30px;
+}
+
+.right-container-login {
+  width: 25%;
+  margin-left: 30px;
+  padding: 30px;
+  text-align: center;
+}
+
+#logo-login {
+  width: 50%;
+  margin-bottom: 20px;
+}
+
+.right-container-2 {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  padding: 20px 30px;
+}
+
+.store-icons {
+  width: 30%;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.left-img-login {
+  height: auto;
+  width: 30%;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.login-btn {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  height: 30px;
+  color: white;
+  background-color: #73c2fb;
+  cursor: pointer;
+  border: #73c2fb;
+  font-weight: 700;
+}
+
+.login-btn:hover {
+  background-color: #2d68c4;
+}
+
+.form-login {
+  display: flex;
+  flex-direction: column;
+}
+
+.sign-up {
+  color: #2d68c4;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  margin-left: 5px;
+  text-decoration: none;
+}
+
+.input-login {
+  height: 20px;
+  border: 1px solid #dcdcdc;
+  margin-top: 10px;
+  padding: 10px;
+  background-color: #f8f8f8;
+  border-radius: 5px;
+}
+
+.input-login:focus {
+  outline: none;
+  border: 1px solid dimgray;
+}
+
+#fb-logo {
+  height: 20px;
+  margin-right: 10px;
+}
+
+.login-with-fb {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #2d68c4;
+  font-weight: 600;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.right-store-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.store-container {
+  padding: 10px 30px;
+}
+
+@media only screen and (max-width: 600px) {
+  .left-img-login {
+    display: none;
+  }
+
+  .right-container-login {
+    width: 100%;
+    height: 300px;
+  }
+}

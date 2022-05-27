@@ -1,0 +1,210 @@
+.card-container {
+  border: 1px solid #d8d8d8;
+  background-color: white;
+  width: 60%;
+  margin-top: 100px;
+  border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
+    rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
+}
+
+.user-details-container {
+  display: flex;
+  align-items: center;
+}
+
+.Card-header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 10px 20px;
+}
+
+.more-options {
+  width: 22px;
+  cursor: pointer;
+}
+
+.profile-picture {
+  width: 50px;
+  height: 50px;
+  object-fit: scale-down;
+  margin-right: 20px;
+}
+
+.other-profile-username {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.post-image {
+  width: 100%;
+}
+
+.post-details {
+  padding: 10px;
+}
+
+.save-like-posts-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.like-share-comment {
+  display: flex;
+  width: 20%;
+  justify-content: space-around;
+}
+
+.like-share-comment-icons {
+  width: 22px;
+  cursor: pointer;
+}
+
+.save-posts-icon {
+  width: 22px;
+  cursor: pointer;
+}
+
+.like-share-comment-icons:hover {
+  filter: invert(90%) sepia(0%) saturate(2107%) hue-rotate(136deg)
+    brightness(97%) contrast(61%);
+}
+
+.save-posts-icon:hover {
+  filter: invert(90%) sepia(0%) saturate(2107%) hue-rotate(136deg)
+    brightness(97%) contrast(61%);
+}
+
+.card-footer {
+  font-size: 13px;
+  padding: 10px;
+}
+
+.usernames-card-footer {
+  font-weight: bolder;
+}
+
+.grey-color-text-card-bottom {
+  cursor: pointer;
+  color: #909090;
+}
+
+.add-comments-container {
+  display: flex;
+  align-items: center;
+  padding: 10px 10px;
+  justify-content: space-between;
+  border-top: 1px solid #d8d8d8;
+}
+
+.comments-input {
+  flex: 1;
+  max-width: 80%;
+  border: none;
+}
+
+.comments-input:focus {
+  outline: none;
+}
+
+.emoji {
+  width: 20px;
+  cursor: pointer;
+}
+
+.post-btn {
+  color: #0cafff;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  font-weight: 600;
+}
+
+.post-btn:hover {
+  color: #2a52be;
+}
+
+.modal-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal {
+  background-color: white;
+  width: 20%;
+  border-radius: 10px;
+}
+
+.modal-header {
+  font-weight: 700;
+  text-transform: uppercase;
+  border-bottom: 2px solid #d8d8d8;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-options {
+  align-items: center;
+  justify-content: center;
+  margin-top: 0px;
+  cursor: pointer;
+  padding: 20px;
+  border-bottom: 2px solid #d8d8d8;
+}
+
+.modal-options:hover {
+  background-color: #d8d8d8;
+  font-weight: 700;
+}
+
+.modal-footer-content {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  cursor: pointer;
+}
+
+.close-btn-icon {
+  width: 20px;
+  margin-right: 10px;
+}
+
+.modal-footer-content:hover {
+  background-color: #d8d8d8;
+  color: red;
+}
+
+@media only screen and (max-width: 600px) {
+  .card-container {
+    width: 100%;
+    margin-top: 100px;
+    border-radius: 0px;
+  }
+
+  .like-share-comment-icons {
+    width: 20px;
+    height: 20px;
+  }
+
+  .save-posts-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .modal {
+    width: 90%;
+  }
+}
