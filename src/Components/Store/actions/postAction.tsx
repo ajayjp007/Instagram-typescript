@@ -2,6 +2,7 @@ export const loadPosts = () => async (dispatch: any) => {
   try {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
+
     const requestOptions: RequestInit = {
       method: "GET",
       headers: myHeaders,

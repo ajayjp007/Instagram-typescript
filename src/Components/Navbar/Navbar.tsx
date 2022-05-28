@@ -1,12 +1,32 @@
 import "./Navbar.css";
-import React, { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Navigate } from "react-router-dom";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import { loadUsers } from "../Store/actions/allUsersActions";
 
-const Navbar = () => {
+const Navbar = ({ loadUsers, users }: any) => {
   const [addPost, setAddPost] = useState<boolean>(false);
   const [openProfile, setOpenProfile] = useState<boolean>(false);
   const [openHome, setOpenHome] = useState<boolean>(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
+  const allUsernames: any = [];
+  const storeUsers = users.users;
+
+  useEffect(() => {
+    loadUsers();
+  }, []);
+
+  storeUsers.map((item: any) => {
+    allUsernames.push(item.username);
+  });
+  const searchUsersHandler = () => {
+    for (let i = 0; i < allUsernames.length; i++) {
+      let result = allUsernames[i].match(searchInputRef.current?.value);
+      console.log(result);
+      //loads result but not able to tap into it
+    }
+  };
   const AddNewPostHandler = () => {
     setAddPost(true);
     setOpenProfile(false);
@@ -22,6 +42,7 @@ const Navbar = () => {
     setOpenHome(true);
     setOpenProfile(false);
   };
+
   return (
     <div className="header-home">
       {addPost && <Navigate to="/newPost-page" />}
@@ -37,12 +58,13 @@ const Navbar = () => {
         type="text"
         placeholder="Search"
         ref={searchInputRef}
+        onChange={searchUsersHandler}
       />
       <div className="icons-container-navbar">
         <img
           className="icons-navbar"
           alt="home"
-          src="https://cdn-icons.flaticon.com/png/512/2099/premium/2099144.png?token=exp=1653124278~hmac=fbe7860c6a31ba78d2f9b8348d80d60a"
+          src="https://img.icons8.com/external-jumpicon-line-ayub-irawan/344/external-home-basic-ui-jumpicon-line-jumpicon-line-ayub-irawan.png"
           onClick={homeHandler}
         />
         <img
@@ -61,7 +83,7 @@ const Navbar = () => {
           className="icons-navbar"
           title="Feature will be added soon."
           alt="navigation"
-          src="https://cdn-icons.flaticon.com/png/512/1947/premium/1947206.png?token=exp=1653124127~hmac=dc198e2d6aff9698b5b287a96484f4e5"
+          src="https://img.icons8.com/ios/344/near-me.png"
         />
         <img
           className="icons-navbar"
@@ -71,7 +93,7 @@ const Navbar = () => {
         />
         <img
           className="icons-navbar"
-          alt="Profile"
+          alt="Profile picture"
           src="https://cdn-icons-png.flaticon.com/512/747/747376.png"
           onClick={openProfileHandler}
         />
@@ -80,4 +102,12 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+Navbar.propTypes = {
+  loadUsers: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = (state: any) => ({
+  users: state.users,
+});
+
+export default connect(mapStateToProps, { loadUsers })(Navbar);

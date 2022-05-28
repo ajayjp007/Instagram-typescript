@@ -7,12 +7,14 @@ import { Navigate } from "react-router-dom";
 
 const Profile = () => {
   const [logOut, setLogOut] = useState<boolean>(false);
+
   const logoutHandler = () => {
     localStorage.removeItem("userName");
     localStorage.removeItem("emailId");
     localStorage.removeItem("token");
     setLogOut(true);
   };
+
   const num = 10;
   return (
     <React.Fragment>
@@ -24,21 +26,26 @@ const Profile = () => {
           alt="Your profile"
           className="user-profile-picture"
         />
+
         <div className="user-info-container">
           <div className="user-details-container-profile">
             <p className="username-profile">
               {localStorage.getItem("userName")}
             </p>
+
             <img
               src="https://www.svgrepo.com/show/147459/settings.svg"
               className="settings-icon"
               alt="settings"
             />
+
             <button className="logout-btn-profile" onClick={logoutHandler}>
               Logout
             </button>
           </div>
+
           <span>{localStorage.getItem("emailId")}</span>
+
           <div className="followers-following-container">
             <span className="number-profile">
               {num} <p> Posts</p>
@@ -53,6 +60,7 @@ const Profile = () => {
           </div>
         </div>
       </div>
+
       <Posts />
     </React.Fragment>
   );

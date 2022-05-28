@@ -78,14 +78,14 @@ const Login = () => {
               src="https://image.similarpng.com/very-thumbnail/2020/04/Popular-facebook-Logo-png.png"
               alt="facebook logo"
               id="fb-logo"
-            />{" "}
-            <p>Log in with Facebook</p>{" "}
+            />
+            <p>Log in with Facebook</p>
           </span>
           <p>Forgot Password?</p>
         </div>
         <div className="right-container-2">
           <p>
-            Dont have an account?{" "}
+            Dont have an account?
             <a className="sign-up" href="/signup-page">
               Sign Up
             </a>

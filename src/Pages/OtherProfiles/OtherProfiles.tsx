@@ -1,13 +1,44 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../../Components/Navbar/Navbar";
 
 //set the props value accordingly when clicked on the other persons username
+
 const OtherProfile = () => {
   const num = 0;
   const [following, setFollowing] = useState<boolean>(false);
+  const [postsData, setPostsData] = useState([]);
+  const [usernameOfPerson, setUsernameOfPerson] = useState<string>();
+
   const followHandler = () => {
     setFollowing(!following);
   };
+
+  const renderUser = localStorage.getItem("viewProfile");
+  useEffect(() => {
+    const raw = JSON.stringify({
+      email: renderUser,
+    });
+    const myHeaders = new Headers();
+    myHeaders.append("Content-Type", "application/json");
+
+    const requestOptions: RequestInit = {
+      method: "POST",
+      headers: myHeaders,
+      body: raw,
+      redirect: "follow",
+    };
+    const fetchData = async () => {
+      await fetch("http://localhost:5000/api/posts/user-posts", requestOptions)
+        .then((response) => response.json())
+        .then((result) => {
+          setUsernameOfPerson(result.posts[0].name);
+          setPostsData(result.posts);
+        })
+        .catch((error) => console.log("error", error));
+    };
+    fetchData().catch(console.error);
+  }, []);
+
   return (
     <React.Fragment>
       <Navbar />
@@ -19,12 +50,14 @@ const OtherProfile = () => {
         />
         <div className="user-info-container">
           <div className="user-details-container-profile">
-            <p className="username-profile">Other username</p>
+            <p className="username-profile">{usernameOfPerson}</p>
             <button className="logout-btn-profile" onClick={followHandler}>
               {following ? "Following" : "Follow"}
             </button>
           </div>
-          <span>their email</span>
+
+          <span>{renderUser}</span>
+
           <div className="followers-following-container">
             <span className="number-profile">
               {num} <p> Posts</p>
@@ -38,6 +71,18 @@ const OtherProfile = () => {
             </span>
           </div>
         </div>
+      </div>
+
+      <div className="user-posts-container">
+        {postsData.map((element: any, index: number) => {
+          return (
+            <img
+              src={element.imageURL}
+              className="users-posts-profile"
+              key={index}
+            />
+          );
+        })}
       </div>
     </React.Fragment>
   );

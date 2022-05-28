@@ -32,23 +32,20 @@ const SignUp: React.FC = () => {
       password: inputPasswordRef.current?.value,
       username: inputUserNameRef.current?.value,
     });
-
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-
     const requestOptions: RequestInit = {
       method: "POST",
       redirect: "follow",
       body: raw,
       headers: myHeaders,
     };
-
     fetch("http://localhost:5000/api/users", requestOptions)
       .then((response) => response.json())
       .then((result) => {
-        console.log(result);
-        localStorage.setItem("token", "true");
-        setSignedUp(true);
+        console.log(result[0]);
+
+        // setSignedUp(true);
       })
       .catch((error) => {
         setFailed(true);
@@ -59,8 +56,7 @@ const SignUp: React.FC = () => {
 
   return (
     <div className="sign-up-main-container">
-      {signedUp && <Navigate to="/home-page" />}
-
+      {signedUp && <Navigate to="/" />}
       <img
         src="https://images.unsplash.com/photo-1533122250115-6bb28e9a48c3?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735"
         alt=""
@@ -73,7 +69,6 @@ const SignUp: React.FC = () => {
           id="logo-signup"
           alt=""
         />
-
         <form className="sign-up-form-container" onSubmit={signUpHandler}>
           <input
             required
@@ -114,7 +109,6 @@ const SignUp: React.FC = () => {
             Sign up
           </button>
         </form>
-
         <p className="terms-and-conditions">
           <img
             src={

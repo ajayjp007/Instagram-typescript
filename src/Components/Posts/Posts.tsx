@@ -11,7 +11,7 @@ const Posts = () => {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
     const raw = JSON.stringify({
-      email,
+      email: email,
     });
     const requestOptions: RequestInit = {
       method: "POST",
@@ -32,6 +32,7 @@ const Posts = () => {
   const deletePostHandler = () => {
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
+
     const raw = JSON.stringify({
       id: deleteId,
     });
@@ -55,17 +56,17 @@ const Posts = () => {
   const closePostHandler = () => {
     setOpenPost(false);
   };
+
   return (
     <div className="user-posts-container">
-      {postsData.map((element: any) => {
+      {postsData.map((element: any, index: number) => {
         return (
           <img
             src={element.imageURL}
             id={element._id}
             className="users-posts-profile"
-            key="posts"
+            key={index}
             onClick={openPostHandler}
-            alt=""
           />
         );
       })}

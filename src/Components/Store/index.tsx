@@ -8,12 +8,11 @@ const middleware = [thunk];
 const store = createStore(
   combineReducers,
   initialState,
-  composeWithDevTools(applyMiddleware(...middleware)) //middleware spec
+  composeWithDevTools(applyMiddleware(...middleware))
 );
 let currentState = store.getState();
 store.subscribe(() => {
   let previousState = currentState;
-
   currentState = store.getState();
 });
 

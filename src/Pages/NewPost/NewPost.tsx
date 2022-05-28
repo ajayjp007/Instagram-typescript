@@ -58,16 +58,15 @@ const NewPost = () => {
         });
       }
     );
-
     const addPostHandler = (downloadURL: string) => {
       const myHeaders = new Headers();
       myHeaders.append("Content-Type", "application/json");
       const username = localStorage.getItem("userName");
       const email = localStorage.getItem("emailId");
-      let newDate = new Date();
-      let date = newDate.getDate();
-      let month = newDate.getMonth() + 1;
-      let year = newDate.getFullYear();
+      const newDate = new Date();
+      const date = newDate.getDate();
+      const month = newDate.getMonth() + 1;
+      const year = newDate.getFullYear();
       const uploadedDate = date + "/" + month + "/" + year;
       const raw = JSON.stringify({
         name: username,
@@ -101,7 +100,7 @@ const NewPost = () => {
             alt="Close button"
             id="close-newpost"
             onClick={closeNewPostHandler}
-          />{" "}
+          />
         </div>
         {imageUrl === null ? (
           <span className="drop-image-here">

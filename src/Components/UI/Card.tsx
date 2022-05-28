@@ -2,7 +2,8 @@ import React, { useRef, useState } from "react";
 import Comments from "../Comments/Comments";
 import "./Card.css";
 
-interface Props {
+//alt should be users profile name
+const Card: React.FC<{
   data: {
     _id: string;
     name: string;
@@ -14,8 +15,7 @@ interface Props {
     comment: [{ username: string; Comment: string; _id: string }];
     numberOfLikes: number;
   };
-}
-const Card: React.FC<Props> = (props) => {
+}> = (props) => {
   const [liked, setIsLiked] = useState<boolean>(false);
   const [postSaved, setPostIsSaved] = useState<boolean>(false);
   const [moreOptions, setMoreOptions] = useState<boolean>(false);
@@ -23,6 +23,7 @@ const Card: React.FC<Props> = (props) => {
   const [openComments, setOpenComment] = useState<boolean>(false);
   const [previousLikes, setPreviousLikes] = useState<number>(0);
   const inputComment = useRef<HTMLInputElement>(null);
+
   const closeModalHandler = () => {
     setMoreOptions(false);
   };
@@ -31,8 +32,11 @@ const Card: React.FC<Props> = (props) => {
     !liked
       ? setPreviousLikes((likes) => previousLikes + 1)
       : setPreviousLikes((likes) => previousLikes - 1);
+
+    console.log(props.data._id, previousLikes);
     const myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
+
     const raw = JSON.stringify({
       id: props.data._id,
       like: {
@@ -40,50 +44,57 @@ const Card: React.FC<Props> = (props) => {
         peopleWhoLiked: previousLikes,
       },
     });
-    const requestOptions: RequestInit = {
+
+    var requestOptions: RequestInit = {
       method: "POST",
       headers: myHeaders,
       body: raw,
       redirect: "follow",
     };
+
     fetch("http://localhost:5000/api/posts/add-likes", requestOptions)
       .then((response) => response.text())
       .then((result) => console.log(result))
       .catch((error) => console.log("error", error));
   };
+
   const savePostHandler = () => {
     setPostIsSaved(!postSaved);
   };
+
   const moreOptionsHandler = () => {
     setMoreOptions(true);
   };
+
   const postCommentsHandler = (event: React.FormEvent) => {
     event.preventDefault();
+
     if (inputComment.current?.value.trim().length === 0) {
       return;
     }
+
     setCommentPosted(true);
-    const myHeaders = new Headers();
+    var myHeaders = new Headers();
     myHeaders.append("Content-Type", "application/json");
-    const raw = JSON.stringify({
+
+    var raw = JSON.stringify({
       id: props.data._id,
       comment: {
         username: localStorage.getItem("userName"),
         Comment: inputComment.current?.value,
       },
     });
-
     const requestOptions: RequestInit = {
       method: "POST",
       headers: myHeaders,
       body: raw,
       redirect: "follow",
     };
-
     fetch("http://localhost:5000/api/posts/add-new-comments", requestOptions)
       .then((response) => response.text())
       .then((result) => console.log(result))
       .catch((error) => console.log("error", error));
+
     setTimeout(() => {
       inputComment.current!.value = "";
       setCommentPosted(false);
@@ -92,6 +103,7 @@ const Card: React.FC<Props> = (props) => {
   const openCommentsHandler = () => {
     setOpenComment(!openComments);
   };
+
   return (
     <div className="card-container">
       <div className="Card-header-container">
@@ -140,7 +152,7 @@ const Card: React.FC<Props> = (props) => {
             <img
               src={
                 !liked
-                  ? "https://cdn-icons-png.flaticon.com/128/711/711349.png"
+                  ? "https://img.icons8.com/ios/344/like--v1.png"
                   : "https://cdn-icons-png.flaticon.com/128/833/833472.png"
               }
               onClick={likeHandler}
@@ -148,13 +160,13 @@ const Card: React.FC<Props> = (props) => {
               className="like-share-comment-icons"
             />
             <img
-              src="https://cdn-icons.flaticon.com/png/512/5948/premium/5948565.png?token=exp=1653123995~hmac=3847735317965d582303390dd775b7e5"
+              src="https://img.icons8.com/external-thin-kawalan-studio/344/external-chat-chat-thin-kawalan-studio-2.png"
               alt="Comment"
               className="like-share-comment-icons"
               onClick={openCommentsHandler}
             />
             <img
-              src="https://cdn-icons.flaticon.com/png/128/5728/premium/5728145.png?token=exp=1653022315~hmac=139002fb55b6446a81c94a46f4abb5a0"
+              src="https://img.icons8.com/ios/344/paper-plane.png"
               alt="Share"
               className="like-share-comment-icons"
             />
@@ -173,8 +185,8 @@ const Card: React.FC<Props> = (props) => {
         <div className="card-footer">
           <p className="usernames-card-footer">Likes {previousLikes}</p>
           <p>
-            <span className="usernames-card-footer">{props.data.name}</span>
-            {props.data.caption}
+            <span className="usernames-card-footer">{props.data.name}</span>{" "}
+            {props.data.caption}{" "}
           </p>
           <p
             className="grey-color-text-card-bottom"
