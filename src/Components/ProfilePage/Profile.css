@@ -1,0 +1,97 @@
+.main-profile-container {
+  padding-top: 100px;
+  margin-left: 25%;
+  margin-right: 25%;
+  padding: 100px 50px 50px 50px;
+  border-bottom: 2px solid #d8d8d8;
+  display: flex;
+}
+
+.user-info-container {
+  padding: 10px 50px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.user-details-container-profile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.username-profile {
+  font-size: 50px;
+}
+
+.user-profile-picture {
+  width: 200px;
+  height: 200px;
+}
+.logout-btn-profile {
+  width: 100px;
+  padding: 10px;
+  font-weight: 600;
+  background-color: white;
+  border: 1px solid #d8d8d8;
+  cursor: pointer;
+}
+
+.logout-btn-profile:hover {
+  background-color: #d8d8d8;
+}
+
+.settings-btn-icon {
+  background-image: url('https://www.svgrepo.com/show/147459/settings.svg');
+  background-repeat: no-repeat;
+  background-size: 1.5rem;
+  border: none;
+  background-color: transparent;
+  height: 1.5rem;
+  width: 1.5rem;
+  cursor: pointer;
+}
+
+.followers-following-container {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.number-profile {
+  display: flex;
+  align-items: center;
+  font-weight: 700;
+}
+
+@media only screen and (max-width: 600px) {
+  .main-profile-container {
+    margin-left: 0px;
+    padding: 100px 22px;
+    width: 100%;
+  }
+
+  .user-profile-picture {
+    width: 50px;
+    height: 50px;
+    padding-top: 15px;
+  }
+
+  .username-profile {
+    font-size: 20px;
+  }
+
+  .logout-btn-profile {
+    width: 60px;
+    font-size: 12px;
+  }
+
+  .settings-icon {
+    width: 20px;
+    height: 20px;
+  }
+
+  .user-info-container {
+    padding: 10px;
+  }
+}

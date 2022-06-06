@@ -1,13 +1,13 @@
-import React from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
-import HomePage from "./Pages/HomePage/HomePage";
-import Login from "./Pages/Login/Login";
-import NewPost from "./Pages/NewPost/NewPost";
-import OtherProfile from "./Pages/OtherProfiles/OtherProfiles";
-import Profile from "./Pages/ProfilePage/Profile";
-import SignUp from "./Pages/Signup/SignUp";
+import React from 'react';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import HomePage from './container/HomePage/HomePage';
+import Login from './Components/Login/Login';
+import NewPost from './Components/NewPost/NewPost';
+import OtherProfile from './Components/OtherProfiles/OtherProfiles';
+import Profile from './Components/ProfilePage/Profile';
+import SignUp from './Components/Signup/SignUp';
 
-function App() {
+const App = () => {
   return (
     <Routes>
       <Route path="/" element={<Navigate to="/login-page" />} />
@@ -19,5 +19,5 @@ function App() {
       <Route path="/other-profile" element={<OtherProfile />} />
     </Routes>
   );
-}
+};
 export default App;

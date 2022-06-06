@@ -1,0 +1,161 @@
+.header-home {
+  display: flex;
+  width: 100%;
+  padding-left: 25%;
+  align-items: center;
+  background-color: white;
+  position: fixed;
+}
+
+.icons-navbar {
+  width: 25px;
+  cursor: pointer;
+}
+
+#logo-home {
+  height: 60px;
+}
+
+.search-bar {
+  width: 10%;
+  height: 10px;
+  border-radius: 5px;
+  background-color: #e8e8e8;
+  border: 1px solid #e8e8e8;
+  padding: 10px 50px;
+  background-image: url('https://www.svgrepo.com/show/14071/search.svg');
+  background-repeat: no-repeat;
+  background-position: left 1rem center;
+  background-size: 1em;
+  margin-left: 50px;
+}
+
+.search-bar:focus {
+  outline: none;
+  border: 2px solid #d8d8d8;
+}
+
+.icons-container-navbar {
+  display: flex;
+  width: 20%;
+  margin-left: 100px;
+  justify-content: space-between;
+}
+.profile-btn {
+  border: none;
+  background-color: transparent;
+  height: 2rem;
+  width: 2rem;
+  background-image: url('https://cdn-icons-png.flaticon.com/512/747/747376.png');
+  background-repeat: no-repeat;
+  background-size: 2rem;
+  cursor: pointer;
+}
+.home-btn {
+  background-image: url('https://img.icons8.com/external-jumpicon-line-ayub-irawan/344/external-home-basic-ui-jumpicon-line-jumpicon-line-ayub-irawan.png');
+  background-repeat: no-repeat;
+  background-size: 2rem;
+  border: none;
+  background-color: transparent;
+  height: 2rem;
+  width: 2rem;
+  cursor: pointer;
+}
+.messages-btn {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/589/589671.png');
+  background-repeat: no-repeat;
+  background-size: 2rem;
+  border: none;
+  background-color: transparent;
+  height: 2rem;
+  width: 2rem;
+  cursor: pointer;
+}
+.heart-btn {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/1077/1077035.png');
+  background-repeat: no-repeat;
+  background-size: 2rem;
+  border: none;
+  background-color: transparent;
+  height: 2rem;
+  width: 2rem;
+  cursor: pointer;
+}
+.navigation-btn {
+  background-image: url('https://img.icons8.com/ios/344/near-me.png');
+  background-repeat: no-repeat;
+  background-size: 2rem;
+  border: none;
+  background-color: transparent;
+  height: 2rem;
+  width: 2rem;
+  cursor: pointer;
+}
+.addNewPost-btn {
+  background-image: url('https://cdn-icons-png.flaticon.com/512/3487/3487486.png');
+  background-repeat: no-repeat;
+  background-size: 2rem;
+  border: none;
+  background-color: transparent;
+  height: 2rem;
+  width: 2rem;
+  cursor: pointer;
+}
+.search-container {
+  width: 30%;
+  background-color: white;
+  position: fixed;
+  margin-left: 25%;
+  margin-top: 5%;
+  /* padding: 20px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-radius: 10px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
+    rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+}
+.search-result-individual-container {
+  display: flex;
+  font-size: 15px;
+  padding: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  height: 4rem;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  padding-left: 4rem;
+  background-color: transparent;
+  background-image: url('../../images/Profile-Male-PNG.png');
+  background-repeat: no-repeat;
+  background-size: 3rem;
+  background-position: 2rem center left;
+}
+.search-result-individual-container:hover {
+  background-color: #d8d8d8;
+  font-weight: 700;
+}
+
+/* mobile resposive */
+
+@media only screen and (max-width: 600px) {
+  #logo-home {
+    display: none;
+  }
+
+  .search-bar {
+    display: none;
+  }
+
+  .icons-container-navbar {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    margin-left: -100px;
+    padding: 10px;
+  }
+  .icons-navbar {
+    width: 30px;
+  }
+}

@@ -25,8 +25,14 @@
 }
 
 .delete-comment-icon {
+  background-image: url('../../images/delete-trash.svg');
+  background-repeat: no-repeat;
+  background-size: 1.5rem;
+  border: none;
+  background-color: transparent;
+  height: 1.5rem;
+  width: 1.5rem;
   cursor: pointer;
-  width: 20px;
 }
 
 @keyframes slideDown {
