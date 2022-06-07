@@ -12,7 +12,7 @@ const UserProfile = () => (
         className="user-profile-picture-home"
       />
       <p>{localStorage.getItem('userName')}</p>
-      <Button content="Switch" />
+      <Button content="Switch" id="Current-User" />
     </div>
     <AddNewFriends />
   </div>

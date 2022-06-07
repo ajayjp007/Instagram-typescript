@@ -130,9 +130,27 @@
   background-image: url('../../images/Profile-Male-PNG.png');
   background-repeat: no-repeat;
   background-size: 3rem;
-  background-position: 2rem center left;
+  background-position: center left 2rem;
 }
 .search-result-individual-container:hover {
+  background-color: #d8d8d8;
+  font-weight: 700;
+}
+.close-btn-search {
+  padding: 20px;
+  border: none;
+  background-color: white;
+  font-size: 15px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.close-icon-search {
+  width: 20px;
+  margin-right: 20px;
+}
+.close-btn-search:hover {
   background-color: #d8d8d8;
   font-weight: 700;
 }

@@ -1,4 +1,5 @@
-import React, { useState, Fragment } from 'react';
+import React, { useState, Fragment, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import Navbar from 'src/container/Navbar/Navbar';
 import Posts from '../../container/Posts/Posts';
@@ -7,7 +8,6 @@ import './Profile.css';
 const Profile = () => {
   const [logOut, setLogOut] = useState<boolean>(false);
   const [openSettings, setOpenSettings] = useState<boolean>(false);
-
   const openSettingsHandler = () => {
     setOpenSettings(true);
   };
@@ -15,9 +15,11 @@ const Profile = () => {
     localStorage.removeItem('userName');
     localStorage.removeItem('emailId');
     localStorage.removeItem('token');
+    localStorage.removeItem('totalFriends');
+    localStorage.removeItem('viewProfile');
     setLogOut(true);
   };
-  const num = 10;
+
   return (
     <Fragment key={Math.floor(Math.random() * 100)}>
       <Navbar />
@@ -52,17 +54,16 @@ const Profile = () => {
           <span>{localStorage.getItem('emailId')}</span>
           <div className="followers-following-container">
             <span className="number-profile">
-              {num}
+              {}
               <p> Posts</p>
             </span>
             <span className="number-profile">
-              {num}
-              <p> followers</p>
+              {`${localStorage.getItem('totalFriends')} Friends`}
             </span>
-            <span className="number-profile">
+            {/* <span className="number-profile">
               {num}
               <p> following</p>
-            </span>
+            </span> */}
           </div>
         </div>
       </div>

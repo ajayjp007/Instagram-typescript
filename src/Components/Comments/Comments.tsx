@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './Comments.css';
 
 interface Props {
-  comments: [{ username: string; Comment: string; _id: string }];
+  comments: [{ username: string; Comment: string; id: string }];
 }
 const Comments: React.FC<Props> = (props) => {
   const [deleteSuccessful, setDeleteSuccessfull] = useState<boolean>(false);
@@ -20,7 +20,7 @@ const Comments: React.FC<Props> = (props) => {
     const myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
     const raw = JSON.stringify({
-      _id: deleteCommentId,
+      id: deleteCommentId,
     });
     const requestOptions: any = {
       method: 'POST',
@@ -51,7 +51,7 @@ const Comments: React.FC<Props> = (props) => {
                 aria-label="Delete comment"
                 onClick={popUpHandler}
                 className="delete-comment-icon"
-                id={items._id}
+                id={items.id}
               />
             </div>
           </div>
@@ -60,26 +60,30 @@ const Comments: React.FC<Props> = (props) => {
       {showPOpUp && (
         <div className="popup-message-main-container">
           <div className="popup-message-container">
-            <p className="popup-message">
-              Are you sure you want to delete the comment?
-            </p>
+            {!deleteSuccessful && (
+              <p className="popup-message">
+                Are you sure you want to delete the comment?
+              </p>
+            )}
             {deleteSuccessful && <p>Your comment was deleted.</p>}
-            <div className="popup-btns-container">
-              <button
-                className="pop-up-btns confirm"
-                onClick={deleteCommentHandler}
-                type="button"
-              >
-                Yes
-              </button>
-              <button
-                className="pop-up-btns"
-                onClick={closePopUpHandler}
-                type="button"
-              >
-                Close
-              </button>
-            </div>
+            {!deleteSuccessful && (
+              <div className="popup-btns-container">
+                <button
+                  className="pop-up-btns confirm"
+                  onClick={deleteCommentHandler}
+                  type="button"
+                >
+                  Yes
+                </button>
+                <button
+                  className="pop-up-btns"
+                  onClick={closePopUpHandler}
+                  type="button"
+                >
+                  Close
+                </button>
+              </div>
+            )}
           </div>
         </div>
       )}

@@ -12,11 +12,9 @@
 .user-profile-picture-home {
   width: 50px;
   height: 50px;
-  clip-path: circle(40%);
 }
 
 .newFriends-user-container {
-  position: fixed;
   margin-left: 35%;
   margin-top: 100px;
 }

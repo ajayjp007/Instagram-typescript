@@ -40,6 +40,9 @@ const AddNewFriends = () => {
     <div className="add-friends-container">
       {viewOtherProfile && <Navigate to="/other-profile" />}
       {allUsers.map((element: any) => {
+        if (element.email === localStorage.getItem('emailId')) {
+          localStorage.setItem('totalFriends', element.friends.length);
+        }
         return (
           <div
             key={Math.floor(Math.random() * 100)}
@@ -58,7 +61,7 @@ const AddNewFriends = () => {
             >
               {element.username}
             </button>
-            <Button content="Follow" />
+            <Button content="Follow" id={element._id} />
           </div>
         );
       })}

@@ -33,7 +33,7 @@ const Posts = () => {
     const myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
     const raw = JSON.stringify({
-      _id: deleteId,
+      id: deleteId,
     });
     const requestOptions: any = {
       method: 'POST',
@@ -59,7 +59,6 @@ const Posts = () => {
   return (
     <div className="user-posts-container">
       {postsData.map((element: any) => {
-        console.log(element);
         return (
           <button
             onClick={openPostHandler}

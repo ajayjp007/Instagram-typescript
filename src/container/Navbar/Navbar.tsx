@@ -1,5 +1,5 @@
 import './Navbar.css';
-import React, { useState, useRef, useEffect, Fragment } from 'react';
+import React, { useState, useRef, Fragment } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
@@ -12,8 +12,6 @@ const Navbar = () => {
   const allUsers = useSelector((state: any) => state.users.users); // get all usernames here
   const allUsernames: Array<string> = [];
   const [searchResultFinal, setSearchResultFinal]: any = useState();
-
-  // useEffect(() => {}, []);
   allUsers.map((item: any) => allUsernames.push(item.username));
   const searchUsersHandler = () => {
     setSearching(true);
@@ -21,7 +19,6 @@ const Navbar = () => {
       return element.includes(searchInputRef.current!.value);
     });
     setSearchResultFinal(searchResult);
-    console.log(searchResult, searchResultFinal);
   };
   const AddNewPostHandler = () => {
     setAddPost(true);
@@ -37,6 +34,9 @@ const Navbar = () => {
     setAddPost(false);
     setOpenHome(true);
     setOpenProfile(false);
+  };
+  const closeSearchBarHandler = () => {
+    setSearching(false);
   };
 
   return (
@@ -100,21 +100,27 @@ const Navbar = () => {
       {searching && (
         <div className="search-container">
           {searchResultFinal.map((username: string) => {
-            console.log(username);
             return (
               <button
                 className="search-result-individual-container"
                 type="button"
               >
-                {/* <img
-                  className="user-profile-picture-search"
-                  src="	https://www.pngall.com/wp-content/uploads/5/Profile-Male-PNG.png"
-                  alt="User profile-picture"
-                /> */}
                 {username}
               </button>
             );
           })}
+          <button
+            className="close-btn-search"
+            type="button"
+            onClick={closeSearchBarHandler}
+          >
+            <img
+              src="https://www.svgrepo.com/show/81335/cancel.svg"
+              alt="Close"
+              className="close-icon-search"
+            />
+            Close
+          </button>
         </div>
       )}
     </Fragment>

@@ -2,19 +2,21 @@ import React, { useRef, useState } from 'react';
 import Comments from 'src/Components/Comments/Comments';
 import './Card.css';
 
-const Card: React.FC<{
+interface Props {
   data: {
-    _id: string;
+    id: string;
     name: string;
     caption: string;
     imageURL: string;
     email: string;
     like: Array<string>;
     uploadedDate: string;
-    comment: [{ username: string; Comment: string; _id: string }];
+    comment: [{ username: string; Comment: string; id: string }];
     numberOfLikes: number;
   };
-}> = (props) => {
+}
+
+const Card = (props: Props) => {
   const currentUser: any = localStorage.getItem('userName');
   const helper = props.data.like.includes(currentUser);
 
@@ -40,7 +42,7 @@ const Card: React.FC<{
     myHeaders.append('Content-Type', 'application/json');
     const raw = JSON.stringify({
       username: localStorage.getItem('userName'),
-      _id: props.data._id,
+      _id: props.data.id,
     });
     const requestOptions: any = {
       method: 'POST',
@@ -68,7 +70,7 @@ const Card: React.FC<{
     const myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
     const raw = JSON.stringify({
-      id: props.data._id,
+      id: props.data.id,
       comment: {
         username: localStorage.getItem('userName'),
         Comment: inputCommentRef.current?.value,
