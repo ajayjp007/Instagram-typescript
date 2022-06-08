@@ -3,8 +3,8 @@ import { Routes, Route, Navigate } from 'react-router-dom';
 import HomePage from './container/HomePage/HomePage';
 import Login from './Components/Login/Login';
 import NewPost from './Components/NewPost/NewPost';
-import OtherProfile from './Components/OtherProfiles/OtherProfiles';
-import Profile from './Components/ProfilePage/Profile';
+import OtherProfile from './container/OtherProfiles/OtherProfiles';
+import Profile from './container/ProfilePage/Profile';
 import SignUp from './Components/Signup/SignUp';
 
 const App = () => {

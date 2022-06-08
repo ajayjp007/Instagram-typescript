@@ -41,7 +41,7 @@ const Navbar = () => {
 
   return (
     <Fragment key={2}>
-      <div className="header-home">
+      <div className="header-home" data-testid="navbar-test">
         {addPost && <Navigate to="/newPost-page" />}
         {openProfile && <Navigate to="/UserProfile-page" />}
         {openHome && <Navigate to="/home-page" />}
@@ -98,7 +98,7 @@ const Navbar = () => {
       </div>
 
       {searching && (
-        <div className="search-container">
+        <div className="search-container" data-testid="search-bar-navbar">
           {searchResultFinal.map((username: string) => {
             return (
               <button

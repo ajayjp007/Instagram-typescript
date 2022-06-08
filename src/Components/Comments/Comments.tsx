@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import './Comments.css';
 
 interface Props {
-  comments: [{ username: string; Comment: string; id: string }];
+  comments: [{ username: string; Comment: string; _id: string }];
+  postId: string;
 }
 const Comments: React.FC<Props> = (props) => {
+  console.log(props);
   const [deleteSuccessful, setDeleteSuccessfull] = useState<boolean>(false);
   const [showPOpUp, setShowPopUp] = useState<boolean>(false);
   const [deleteCommentId, setDeleteCommentId] = useState<string>();
@@ -16,11 +18,13 @@ const Comments: React.FC<Props> = (props) => {
     setShowPopUp(false);
   };
   const deleteCommentHandler = () => {
+    console.log(props.comments, props.postId);
     // deletes the post fix!!!
     const myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
     const raw = JSON.stringify({
       id: deleteCommentId,
+      postId: props.postId,
     });
     const requestOptions: any = {
       method: 'POST',
@@ -42,7 +46,10 @@ const Comments: React.FC<Props> = (props) => {
     <div className="comment-container">
       {props.comments.map((items) => {
         return (
-          <div className="comments-line" key={Math.floor(Math.random() * 100)}>
+          <div
+            className="comments-line"
+            key={Math.floor(Math.random() * 100000)}
+          >
             {items.username}
             <div className="comment-content-container">
               <p className="comments-content">{items.Comment}</p>
@@ -51,7 +58,7 @@ const Comments: React.FC<Props> = (props) => {
                 aria-label="Delete comment"
                 onClick={popUpHandler}
                 className="delete-comment-icon"
-                id={items.id}
+                id={items._id}
               />
             </div>
           </div>

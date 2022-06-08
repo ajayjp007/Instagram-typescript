@@ -108,6 +108,21 @@
   object-fit: scale-down;
   max-height: 600px;
 }
+.progress-bar-container {
+  width: 50%;
+  margin-left: 25%;
+  margin-top: 20px;
+  height: 20px;
+  background-color: white;
+  border: 1px solid #e8e8e8;
+  border-radius: 5px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  text-align: center;
+}
+.progress-bar {
+  height: 100%;
+  background-color: #009f6b;
+}
 
 @media only screen and (max-width: 600px) {
   .new-post-container {

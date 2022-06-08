@@ -4,14 +4,14 @@ import './Card.css';
 
 interface Props {
   data: {
-    id: string;
+    _id: string;
     name: string;
     caption: string;
     imageURL: string;
     email: string;
     like: Array<string>;
     uploadedDate: string;
-    comment: [{ username: string; Comment: string; id: string }];
+    comment: [{ username: string; Comment: string; _id: string }];
     numberOfLikes: number;
   };
 }
@@ -32,17 +32,19 @@ const Card = (props: Props) => {
     setMoreOptions(false);
   };
   const likeHandler = () => {
+    console.log(props, 'id--');
     setIsLiked(!liked);
     if (liked) {
       setNumOfLikes(numOfLikes - 1);
     } else {
       setNumOfLikes(numOfLikes + 1);
     }
+
     const myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
     const raw = JSON.stringify({
       username: localStorage.getItem('userName'),
-      _id: props.data.id,
+      _id: props.data._id,
     });
     const requestOptions: any = {
       method: 'POST',
@@ -52,7 +54,9 @@ const Card = (props: Props) => {
     };
     fetch('http://localhost:5000/api/posts/add-likes', requestOptions)
       .then((response) => response.text())
-      .then((result) => result)
+      .then((result) => {
+        console.log(result, 'result');
+      })
       .catch((error) => error);
   };
   const savePostHandler = () => {
@@ -70,7 +74,7 @@ const Card = (props: Props) => {
     const myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
     const raw = JSON.stringify({
-      id: props.data.id,
+      id: props.data._id,
       comment: {
         username: localStorage.getItem('userName'),
         Comment: inputCommentRef.current?.value,
@@ -97,7 +101,7 @@ const Card = (props: Props) => {
   };
 
   return (
-    <div className="card-container">
+    <div className="card-container" data-testid="card-test">
       <div className="Card-header-container">
         <div className="user-details-container">
           <img
@@ -193,7 +197,9 @@ const Card = (props: Props) => {
             {` ${props.data.uploadedDate}`}
           </p>
         </div>
-        {openComments && <Comments comments={props.data.comment} />}
+        {openComments && (
+          <Comments comments={props.data.comment} postId={props.data._id} />
+        )}
       </div>
       <form className="add-comments-container" onSubmit={postCommentsHandler}>
         <input

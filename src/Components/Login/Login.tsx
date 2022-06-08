@@ -7,6 +7,7 @@ const Login = () => {
   const [loginFailed, setLoginFailed] = useState<boolean>(false);
   const usernameInputRef = useRef<HTMLInputElement>(null);
   const passwordInputRef = useRef<HTMLInputElement>(null);
+
   const loginHandler = (event: React.FormEvent) => {
     event.preventDefault();
     const myHeaders = new Headers();
@@ -28,7 +29,14 @@ const Login = () => {
           localStorage.setItem('token', 'true');
           localStorage.setItem('userName', result.username);
           localStorage.setItem('emailId', usernameInputRef.current!.value);
-          setLoginSucess(true);
+          console.log(result.errors);
+          if (result.errors === '') {
+            setLoginSucess(true);
+            setLoginFailed(true);
+          } else {
+            setLoginSucess(false);
+          }
+          // setLoginSucess(true);
         })
         .catch(() => {
           setLoginFailed(true);
@@ -37,7 +45,7 @@ const Login = () => {
     fetchData().catch();
   };
   return (
-    <div className="main-container">
+    <div className="main-container" data-testid="Login-elem">
       <img
         src="https://images.unsplash.com/photo-1572096082124-9e8ac147b085?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
         alt=""
@@ -71,7 +79,9 @@ const Login = () => {
             </button>
           </form>
           {loginFailed && (
-            <p className="warning-messages">Wrong username or password</p>
+            <p className="warning-messages" data-testid="login-failed-message">
+              Wrong username or password
+            </p>
           )}
           <span>OR</span>
           <span className="login-with-fb">

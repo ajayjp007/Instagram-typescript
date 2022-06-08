@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react';
 import { Navigate } from 'react-router-dom';
 import './SignUp.css';
 
-const SignUp: React.FC = () => {
+const SignUp = () => {
   const [notChecked, setNotChecked] = useState<boolean>(true);
   const [signedUp, setSignedUp] = useState<boolean>(false);
   const [failed, setFailed] = useState<boolean>(false);
@@ -41,8 +41,10 @@ const SignUp: React.FC = () => {
     };
     fetch('http://localhost:5000/api/users', requestOptions)
       .then((response) => response.json())
-      .then(() => {
-        setSignedUp(true);
+      .then((result) => {
+        if (result.errors === '') {
+          setSignedUp(true);
+        }
       })
       .catch(() => {
         setFailed(true);
@@ -51,10 +53,10 @@ const SignUp: React.FC = () => {
   };
 
   return (
-    <div className="sign-up-main-container">
+    <div className="sign-up-main-container" data-testid="Signup-elem">
       {signedUp && <Navigate to="/" />}
       <img
-        src="https://images.unsplash.com/photo-1533122250115-6bb28e9a48c3?crop=entropy&cs=tinysrgb&fm=jpg&ixlib=rb-1.2.1&q=80&raw_url=true&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735"
+        src="https://images.unsplash.com/photo-1505356822725-08ad25f3ffe4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
         alt=""
         className="left-image-signup"
       />
@@ -117,10 +119,15 @@ const SignUp: React.FC = () => {
           By signing up you automatically accept all our terms and conditions
         </p>
         {failed && (
-          <p className="warning-messages">Please check your inputs.</p>
+          <p className="warning-messages" data-testid="warning-message-signup">
+            Please check your inputs.
+          </p>
         )}
         {notChecked && (
-          <p className="warning-messages">
+          <p
+            className="warning-messages"
+            data-testid="terms-conditions-message-test"
+          >
             Agree to the terms and conditions to continue.
           </p>
         )}

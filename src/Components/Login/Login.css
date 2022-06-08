@@ -90,7 +90,7 @@ body {
 
 .input-login:focus {
   outline: none;
-  border: 1px solid dimgray;
+  border: 2px solid #dcdcdc;
 }
 
 #fb-logo {

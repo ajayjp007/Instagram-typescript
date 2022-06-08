@@ -37,7 +37,7 @@ const AddNewFriends = () => {
   }, []);
 
   return (
-    <div className="add-friends-container">
+    <div className="add-friends-container" data-testid="addNewFriends-test">
       {viewOtherProfile && <Navigate to="/other-profile" />}
       {allUsers.map((element: any) => {
         if (element.email === localStorage.getItem('emailId')) {
@@ -45,7 +45,7 @@ const AddNewFriends = () => {
         }
         return (
           <div
-            key={Math.floor(Math.random() * 100)}
+            key={Math.floor(Math.random() * 1000000)}
             className="new-friends-details-container"
           >
             <img

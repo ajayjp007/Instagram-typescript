@@ -27,6 +27,7 @@ const Button: React.FC<{ content: string; id: string }> = ({ content, id }) => {
   };
   return (
     <button
+      data-testid="Button-1"
       type="button"
       id={id}
       className={sendFriendRequest ? 'follow-btn friendReqSent' : 'follow-btn'}

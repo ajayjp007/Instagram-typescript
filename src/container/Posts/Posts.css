@@ -12,6 +12,19 @@
 .users-posts-profile:hover {
   filter: invert(40%);
 }
+.no-posts-yet-container {
+  text-align: center;
+  font-size: 30px;
+  font-weight: 700;
+  margin-top: 50px;
+  margin-left: 25%;
+  margin-right: 25%;
+  border-radius: 10px;
+  padding: 50px;
+}
+.no-posts-yet-image {
+  width: 30%;
+}
 
 .about-post-container {
   display: flex;

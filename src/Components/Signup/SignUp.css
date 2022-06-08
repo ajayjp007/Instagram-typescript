@@ -5,9 +5,10 @@
 .sign-up-container {
   margin-top: 10%;
   height: max-content;
+  border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   background-color: white;
-  padding: 20px;
+  padding: 40px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -21,7 +22,7 @@
 }
 
 #logo-signup {
-  width: 30%;
+  width: 40%;
 }
 
 .sign-up-form-container {
@@ -68,15 +69,15 @@
 
 .input-sign-up:focus {
   outline: none;
-  border: 1px solid #989898;
+  border: 2px solid #dcdcdc;
 }
 
-.password {
+/* .password {
   background-image: url('https://www.svgrepo.com/show/40039/eye.svg');
   background-repeat: no-repeat;
   background-size: 1rem;
   background-position: right 1rem center;
-}
+} */
 
 .sign-up-btn {
   margin-top: 20px;

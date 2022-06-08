@@ -12,6 +12,7 @@ const NewPost = () => {
   const [preview, setPreview] = useState<string>();
   const [posting, setPosting] = useState<boolean>(false);
   const [uploadFailed, setUploadFailed] = useState<boolean>(false);
+  const [postingProgress, setPostingProgress] = useState<number>(0);
 
   const addPostHandler = (downloadURL: string) => {
     const myHeaders = new Headers();
@@ -50,11 +51,6 @@ const NewPost = () => {
     if (!imageUrl) {
       setPreview(undefined);
     }
-    // const mediaStream = navigator.mediaDevices.getUserMedia({ video: true });
-    // const objectUrl = URL.createObjectURL(imageUrl);
-
-    // console.log(objectUrl);
-
     // const objectUrl = URL.createObjectURL(imageUrl);
     // setPreview(objectUrl);
     // return () => URL.revokeObjectURL(objectUrl);
@@ -73,17 +69,8 @@ const NewPost = () => {
     uploadTask.on(
       'state_changed',
       (snapshot) => {
-        const progress =
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-        console.log('Upload is ' + progress + '% done');
-        switch (snapshot.state) {
-          case 'paused':
-            console.log('Upload is paused');
-            break;
-          case 'running':
-            console.log('Upload is running');
-            break;
-        }
+        const progress = snapshot.bytesTransferred / snapshot.totalBytes;
+        setPostingProgress(progress * 100);
       },
       (error) => {
         if (error) {
@@ -100,9 +87,8 @@ const NewPost = () => {
     );
   };
   return (
-    <Fragment key={Math.floor(Math.random() * 100)}>
-      {uploadFailed && <p>Upload Failed Please Try Again.</p>}
-      <form onSubmit={uploadImageHandler}>
+    <Fragment key={Math.floor(Math.random() * 10000)}>
+      <form onSubmit={uploadImageHandler} data-testid="NewPost-elem">
         <div className="new-post-container">
           {goBack && <Navigate to="/home-page" />}
           <div className="new-post-header">
@@ -144,8 +130,22 @@ const NewPost = () => {
             <button className="post-btn-newpost" type="submit">
               {posting ? 'Posting...' : 'Post'}
             </button>
+            {uploadFailed && <p>Upload Failed Please Try Again.</p>}
           </div>
         </div>
+        {posting && (
+          <div
+            className="progress-bar-container"
+            data-testid="progress-bar-new-post"
+          >
+            <div
+              className="progress-bar"
+              style={{ width: `${postingProgress}%` }}
+            >
+              {postingProgress}
+            </div>
+          </div>
+        )}
       </form>
     </Fragment>
   );

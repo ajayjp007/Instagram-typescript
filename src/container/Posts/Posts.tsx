@@ -4,8 +4,8 @@ import './Posts.css';
 const Posts = () => {
   const [postsData, setPostsData] = useState<any>([]);
   const [openPost, setOpenPost] = useState<boolean>(false);
-  const [deleteId, setDeleteId] = useState<any>();
-  const [postURL, setPostURL] = useState<string>();
+  const [deleteId, setDeleteId] = useState<any>(null);
+  const [postURL, setPostURL] = useState<string>('');
   useEffect(() => {
     const email = localStorage.getItem('emailId');
     const myHeaders = new Headers();
@@ -56,8 +56,21 @@ const Posts = () => {
     setOpenPost(false);
   };
 
+  if (postsData.length === 0) {
+    return (
+      <div className="no-posts-yet-container">
+        <img
+          src="http://cdn.onlinewebfonts.com/svg/img_563604.png"
+          alt="No Posts Yet"
+          className="no-posts-yet-image"
+        />
+        <p>No Posts Yet.</p>
+      </div>
+    );
+  }
+
   return (
-    <div className="user-posts-container">
+    <div className="user-posts-container" data-testid="Posts-renderer">
       {postsData.map((element: any) => {
         return (
           <button
@@ -77,7 +90,10 @@ const Posts = () => {
         );
       })}
       {openPost && (
-        <div className="about-post-container">
+        <div
+          className="about-post-container"
+          data-testid="open-post-test-profile"
+        >
           <img src={postURL} alt="Your post" className="post-about-posts" />
           <div className="options-container-about-post">
             <button

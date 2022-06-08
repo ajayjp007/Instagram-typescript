@@ -1,13 +1,20 @@
 import React, { useState, Fragment, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import Navbar from 'src/container/Navbar/Navbar';
-import Posts from '../../container/Posts/Posts';
+import Posts from '../Posts/Posts';
 import './Profile.css';
 
 const Profile = () => {
   const [logOut, setLogOut] = useState<boolean>(false);
   const [openSettings, setOpenSettings] = useState<boolean>(false);
+  const posts = useSelector((state: any) => state.posts.posts);
+  let postCount: number = 0;
+  posts.map((post: any) => {
+    if (post.name === localStorage.getItem('username')) {
+      postCount = postCount + 1;
+    }
+  });
   const openSettingsHandler = () => {
     setOpenSettings(true);
   };
@@ -21,11 +28,11 @@ const Profile = () => {
   };
 
   return (
-    <Fragment key={Math.floor(Math.random() * 100)}>
+    <Fragment key={Math.floor(Math.random() * 1000000)}>
       <Navbar />
       {openSettings && <Navigate to="/user-settings" />}
       {logOut && <Navigate to="/" />}
-      <div className="main-profile-container">
+      <div className="main-profile-container" data-testid="Profile-elem">
         <img
           src="https://cdn.pixabay.com/photo/2017/06/13/12/53/profile-2398782_960_720.png"
           alt="Your profile"
@@ -53,17 +60,12 @@ const Profile = () => {
           </div>
           <span>{localStorage.getItem('emailId')}</span>
           <div className="followers-following-container">
-            <span className="number-profile">
-              {}
-              <p> Posts</p>
-            </span>
+            <span className="number-profile">{`${
+              postCount === undefined ? 'Loading' : postCount
+            } Posts`}</span>
             <span className="number-profile">
               {`${localStorage.getItem('totalFriends')} Friends`}
             </span>
-            {/* <span className="number-profile">
-              {num}
-              <p> following</p>
-            </span> */}
           </div>
         </div>
       </div>
