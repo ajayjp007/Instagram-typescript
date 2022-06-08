@@ -44,9 +44,7 @@ const NewPost = () => {
       .then((result) => result)
       .catch((error) => error);
   };
-
   // preview method createObjectUrl has been depriciated so make the necessary changes later
-
   useEffect(() => {
     if (!imageUrl) {
       setPreview(undefined);
@@ -70,7 +68,7 @@ const NewPost = () => {
       'state_changed',
       (snapshot) => {
         const progress = snapshot.bytesTransferred / snapshot.totalBytes;
-        setPostingProgress(progress * 100);
+        setPostingProgress(Math.trunc(progress * 100));
       },
       (error) => {
         if (error) {

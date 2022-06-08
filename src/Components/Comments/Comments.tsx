@@ -6,7 +6,6 @@ interface Props {
   postId: string;
 }
 const Comments: React.FC<Props> = (props) => {
-  console.log(props);
   const [deleteSuccessful, setDeleteSuccessfull] = useState<boolean>(false);
   const [showPOpUp, setShowPopUp] = useState<boolean>(false);
   const [deleteCommentId, setDeleteCommentId] = useState<string>();
@@ -18,8 +17,6 @@ const Comments: React.FC<Props> = (props) => {
     setShowPopUp(false);
   };
   const deleteCommentHandler = () => {
-    console.log(props.comments, props.postId);
-    // deletes the post fix!!!
     const myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
     const raw = JSON.stringify({

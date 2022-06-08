@@ -18,9 +18,8 @@ interface Props {
 
 const Card = (props: Props) => {
   const currentUser: any = localStorage.getItem('userName');
-  const helper = props.data.like.includes(currentUser);
-
-  const [liked, setIsLiked] = useState<boolean>(helper);
+  const checkIfLikesIncludesUser = props.data.like.includes(currentUser);
+  const [liked, setIsLiked] = useState<boolean>(checkIfLikesIncludesUser);
   const [postSaved, setPostIsSaved] = useState<boolean>(false);
   const [moreOptions, setMoreOptions] = useState<boolean>(false);
   const [commentPosted, setCommentPosted] = useState<boolean>(false);
@@ -32,7 +31,6 @@ const Card = (props: Props) => {
     setMoreOptions(false);
   };
   const likeHandler = () => {
-    console.log(props, 'id--');
     setIsLiked(!liked);
     if (liked) {
       setNumOfLikes(numOfLikes - 1);
@@ -177,10 +175,7 @@ const Card = (props: Props) => {
           />
         </span>
         <div className="card-footer">
-          <p className="usernames-card-footer">
-            Likes
-            {` ${numOfLikes}`}
-          </p>
+          <p className="usernames-card-footer">{`Likes ${numOfLikes}`}</p>
           <p>
             <span className="usernames-card-footer">{props.data.name}</span>
             {` ${props.data.caption}`}
@@ -193,8 +188,7 @@ const Card = (props: Props) => {
             View all comments
           </button>
           <p className="grey-color-text-card-bottom">
-            Posted on
-            {` ${props.data.uploadedDate}`}
+            {`Posted on ${props.data.uploadedDate}`}
           </p>
         </div>
         {openComments && (

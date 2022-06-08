@@ -1,13 +1,17 @@
 .add-friends-container {
-  margin-left: 0%;
+  margin-left: -15%;
   background-color: white;
-  margin-top: 20px;
-  width: 100%;
+  margin-top: 100px;
+  width: 20%;
   padding: 10px;
+  position: fixed;
   border-radius: 10px;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
-
+.newFriends-user-container {
+  /* margin-left: 0%; */
+  margin-top: 100px;
+}
 .new-friends-details-container {
   display: flex;
   align-items: center;

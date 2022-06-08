@@ -10,9 +10,10 @@ const Profile = () => {
   const [openSettings, setOpenSettings] = useState<boolean>(false);
   const posts = useSelector((state: any) => state.posts.posts);
   let postCount: number = 0;
-  posts.map((post: any) => {
-    if (post.name === localStorage.getItem('username')) {
-      postCount = postCount + 1;
+
+  posts.forEach((post: any) => {
+    if (post.name === localStorage.getItem('userName')) {
+      postCount += 1;
     }
   });
   const openSettingsHandler = () => {
@@ -60,9 +61,9 @@ const Profile = () => {
           </div>
           <span>{localStorage.getItem('emailId')}</span>
           <div className="followers-following-container">
-            <span className="number-profile">{`${
-              postCount === undefined ? 'Loading' : postCount
-            } Posts`}</span>
+            <span className="number-profile">
+              {`${postCount === undefined ? 'Loading' : postCount} Posts`}
+            </span>
             <span className="number-profile">
               {`${localStorage.getItem('totalFriends')} Friends`}
             </span>

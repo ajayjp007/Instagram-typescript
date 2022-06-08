@@ -100,6 +100,7 @@ const Navbar = () => {
       {searching && (
         <div className="search-container" data-testid="search-bar-navbar">
           {searchResultFinal.map((username: string) => {
+            console.log(username);
             return (
               <button
                 className="search-result-individual-container"

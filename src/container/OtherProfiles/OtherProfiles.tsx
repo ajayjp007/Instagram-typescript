@@ -10,18 +10,15 @@ const OtherProfile = () => {
   let usernameOfPerson;
   const users = useSelector((state: any) => state.users.users);
   const renderUser = localStorage.getItem('viewProfile');
-
-  users.map((user: any) => {
+  users.forEach((user: any) => {
     if (user.email === renderUser) {
       usernameOfPerson = user.username;
       numOfFriends = user.friends.length;
     }
   });
-
   const followHandler = () => {
     setFollowing(!following);
   };
-
   useEffect(() => {
     const raw = JSON.stringify({
       email: renderUser,
@@ -67,16 +64,16 @@ const OtherProfile = () => {
               {following ? 'Following' : 'Follow'}
             </button>
           </div>
-
           <span>{renderUser}</span>
-
           <div className="followers-following-container">
-            <span className="number-profile">{`${
-              numOfPosts === undefined ? 'Loading' : numOfPosts
-            } Posts`}</span>
-            <span className="number-profile">{`${
-              numOfFriends === undefined ? 'Loading' : numOfFriends
-            } Friends`}</span>
+            <span className="number-profile">
+              {`${numOfPosts === undefined ? 'Loading' : numOfPosts} Posts`}
+            </span>
+            <span className="number-profile">
+              {`${
+                numOfFriends === undefined ? 'Loading' : numOfFriends
+              } Friends`}
+            </span>
             {/* <span className="number-profile">
               {num}
               <p>following</p>
