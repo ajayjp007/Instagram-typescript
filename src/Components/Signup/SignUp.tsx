@@ -103,7 +103,11 @@ const SignUp = () => {
             type="password"
             className="input-sign-up"
           />
-          <button type="submit" className="sign-up-btn">
+          <button
+            type="submit"
+            className="sign-up-btn"
+            data-testid="sign-up-btn-test"
+          >
             Sign up
           </button>
         </form>

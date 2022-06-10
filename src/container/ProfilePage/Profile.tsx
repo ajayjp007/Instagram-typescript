@@ -1,7 +1,7 @@
 import React, { useState, Fragment, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
-import Navbar from 'src/container/Navbar/Navbar';
+import Navbar from '../Navbar/Navbar';
 import Posts from '../Posts/Posts';
 import './Profile.css';
 

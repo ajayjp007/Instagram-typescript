@@ -40,7 +40,7 @@ const Comments: React.FC<Props> = (props) => {
       .catch((error) => error);
   };
   return (
-    <div className="comment-container">
+    <div className="comment-container" data-testId="comment-section-test">
       {props.comments.map((items) => {
         return (
           <div
@@ -76,6 +76,7 @@ const Comments: React.FC<Props> = (props) => {
                   className="pop-up-btns confirm"
                   onClick={deleteCommentHandler}
                   type="button"
+                  data-testid="delete-comment-test"
                 >
                   Yes
                 </button>

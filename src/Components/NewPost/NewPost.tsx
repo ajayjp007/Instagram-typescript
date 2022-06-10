@@ -8,13 +8,13 @@ import './NewPost.css';
 const NewPost = () => {
   const [goBack, setGoBack] = useState<boolean>(false);
   const [imageUrl, setImageUrl] = useState<any>(null);
-  const captionInput = useRef<HTMLInputElement>(null);
+  const captionInput = useRef<any>();
   const [preview, setPreview] = useState<string>();
   const [posting, setPosting] = useState<boolean>(false);
   const [uploadFailed, setUploadFailed] = useState<boolean>(false);
   const [postingProgress, setPostingProgress] = useState<number>(0);
 
-  const addPostHandler = (downloadURL: string) => {
+  const addPostHandler = (downloadURL: string, caption: String) => {
     const myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
     const username = localStorage.getItem('userName');
@@ -27,7 +27,7 @@ const NewPost = () => {
     const raw = JSON.stringify({
       name: username,
       email,
-      caption: captionInput.current?.value,
+      caption,
       imageURL: downloadURL,
       uploadedDate,
       like: [],
@@ -57,6 +57,7 @@ const NewPost = () => {
     setGoBack(true);
   };
   const uploadImageHandler = async (event: React.FormEvent) => {
+    const caption = captionInput.current.value;
     event.preventDefault();
     if (imageUrl === null) {
       return;
@@ -78,7 +79,7 @@ const NewPost = () => {
       },
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL: string) => {
-          addPostHandler(downloadURL);
+          addPostHandler(downloadURL, caption);
           setGoBack(true);
         });
       },
@@ -125,7 +126,11 @@ const NewPost = () => {
               className="caption-input"
               ref={captionInput}
             />
-            <button className="post-btn-newpost" type="submit">
+            <button
+              className="post-btn-newpost"
+              type="submit"
+              data-testid="newpost-test-btn"
+            >
               {posting ? 'Posting...' : 'Post'}
             </button>
             {uploadFailed && <p>Upload Failed Please Try Again.</p>}

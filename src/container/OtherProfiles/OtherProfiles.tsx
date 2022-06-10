@@ -1,6 +1,6 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import { useSelector } from 'react-redux';
-import Navbar from 'src/container/Navbar/Navbar';
+import Navbar from '../Navbar/Navbar';
 
 const OtherProfile = () => {
   const [following, setFollowing] = useState<boolean>(false);

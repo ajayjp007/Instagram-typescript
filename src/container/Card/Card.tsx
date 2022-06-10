@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import Comments from 'src/Components/Comments/Comments';
+import Comments from '../../Components/Comments/Comments';
 import './Card.css';
 
 interface Props {
@@ -52,9 +52,7 @@ const Card = (props: Props) => {
     };
     fetch('http://localhost:5000/api/posts/add-likes', requestOptions)
       .then((response) => response.text())
-      .then((result) => {
-        console.log(result, 'result');
-      })
+      .then((result) => result)
       .catch((error) => error);
   };
   const savePostHandler = () => {
@@ -112,12 +110,13 @@ const Card = (props: Props) => {
         <button
           aria-label="options"
           type="button"
+          data-testid="more-options-test-card"
           onClick={moreOptionsHandler}
           className="more-options"
         />
       </div>
       {moreOptions && (
-        <div className="modal-container">
+        <div className="modal-container" data-testid="modal-card-test">
           <div className="modal">
             <div className="modal-header">
               <p>Options</p>
@@ -150,6 +149,7 @@ const Card = (props: Props) => {
             <button
               aria-label="like"
               type="button"
+              data-testid="card-like-btn-test"
               onClick={likeHandler}
               className={!liked ? 'like-icons-btn-card' : 'liked-icon-btn-card'}
             />

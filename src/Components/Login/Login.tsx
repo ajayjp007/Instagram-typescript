@@ -29,14 +29,12 @@ const Login = () => {
           localStorage.setItem('token', 'true');
           localStorage.setItem('userName', result.username);
           localStorage.setItem('emailId', usernameInputRef.current!.value);
-          console.log(result.errors);
           if (result.errors === '') {
             setLoginSucess(true);
             setLoginFailed(true);
           } else {
             setLoginSucess(false);
           }
-          // setLoginSucess(true);
         })
         .catch(() => {
           setLoginFailed(true);
@@ -45,7 +43,7 @@ const Login = () => {
     fetchData().catch();
   };
   return (
-    <div className="main-container" data-testid="Login-elem">
+    <div className="main-container" data-testid="login-test-elem">
       <img
         src="https://images.unsplash.com/photo-1572096082124-9e8ac147b085?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
         alt=""
@@ -59,7 +57,11 @@ const Login = () => {
             alt="logo"
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/840px-Instagram_logo.svg.png"
           />
-          <form className="form-login" onSubmit={loginHandler}>
+          <form
+            className="form-login"
+            onSubmit={loginHandler}
+            data-testid="form-submit-login"
+          >
             <input
               required
               ref={usernameInputRef}
@@ -74,7 +76,11 @@ const Login = () => {
               className="input-login"
               type="password"
             />
-            <button className="login-btn" type="submit">
+            <button
+              className="login-btn"
+              type="submit"
+              data-testid="form-submit-btn-login"
+            >
               Log In
             </button>
           </form>

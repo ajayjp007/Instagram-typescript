@@ -13,6 +13,7 @@ const Navbar = () => {
   const allUsernames: Array<string> = [];
   const [searchResultFinal, setSearchResultFinal]: any = useState();
   allUsers.map((item: any) => allUsernames.push(item.username));
+
   const searchUsersHandler = () => {
     setSearching(true);
     const searchResult = allUsernames.filter((element: string) => {
@@ -22,18 +23,12 @@ const Navbar = () => {
   };
   const AddNewPostHandler = () => {
     setAddPost(true);
-    setOpenProfile(false);
-    setOpenHome(false);
   };
   const openProfileHandler = () => {
     setOpenProfile(true);
-    setAddPost(false);
-    setOpenHome(false);
   };
   const homeHandler = () => {
-    setAddPost(false);
     setOpenHome(true);
-    setOpenProfile(false);
   };
   const closeSearchBarHandler = () => {
     setSearching(false);
@@ -100,7 +95,6 @@ const Navbar = () => {
       {searching && (
         <div className="search-container" data-testid="search-bar-navbar">
           {searchResultFinal.map((username: string) => {
-            console.log(username);
             return (
               <button
                 className="search-result-individual-container"
