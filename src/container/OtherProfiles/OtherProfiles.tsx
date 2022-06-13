@@ -60,6 +60,7 @@ const OtherProfile = () => {
               className="logout-btn-profile"
               onClick={followHandler}
               type="button"
+              data-testid="follow-btn-other-profile-test"
             >
               {following ? 'Following' : 'Follow'}
             </button>
@@ -74,10 +75,6 @@ const OtherProfile = () => {
                 numOfFriends === undefined ? 'Loading' : numOfFriends
               } Friends`}
             </span>
-            {/* <span className="number-profile">
-              {num}
-              <p>following</p>
-            </span> */}
           </div>
         </div>
       </div>

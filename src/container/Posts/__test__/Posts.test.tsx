@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, cleanup } from '@testing-library/react';
+import { render, screen, cleanup, fireEvent } from '@testing-library/react';
 import Posts from '../Posts';
 import '@testing-library/jest-dom';
 
@@ -13,12 +13,33 @@ describe('Render posts on the profile page', () => {
       }),
     );
     render(<Posts />);
-    const PostComponent = screen.getByTestId('Posts-renderer');
+    const PostComponent = screen.getByTestId('posts-document-test');
     expect(PostComponent).toBeInTheDocument();
   });
 
-  test('open particular post should be falsy', () => {
-    const openPost = screen.queryByTestId('open-post-test-profile');
-    expect(openPost).toBeFalsy();
+  test('No posts yet paragraph', () => {
+    global.fetch = jest.fn().mockImplementationOnce(() =>
+      Promise.resolve({
+        status: 200,
+        json: () => Promise.resolve({ success: true, error: '' }),
+      }),
+    );
+    render(<Posts />);
+    const text = screen.getByTestId('no-posts-yet-test');
+    expect(text).toHaveTextContent('No Posts Yet.');
   });
+
+  // test('open particular post should display the post', () => {
+  //   (global.fetch = jest.fn().mockImplementationOnce(() =>
+  //     Promise.resolve({
+  //       status: 200,
+  //       json: () => Promise.resolve({ success: true, error: '' }),
+  //     }),
+  //   )),
+  //     render(<Posts />);
+  //   const openPostBtn = screen.getByTestId('open-post-btn-test');
+  //   fireEvent.click(openPostBtn);
+  //   const post = screen.getByTestId('open-post-test-profile');
+  //   expect(post).toBeVisible();
+  // });
 });

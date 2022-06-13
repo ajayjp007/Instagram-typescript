@@ -47,6 +47,7 @@ const Profile = () => {
             <button
               className="settings-btn-icon"
               type="button"
+              data-testid="settings-button-profile-test"
               aria-label="settings"
               onClick={openSettingsHandler}
             />
@@ -55,6 +56,7 @@ const Profile = () => {
               onClick={logoutHandler}
               type="button"
               aria-label="logout"
+              data-testid="logout-button-test"
             >
               Logout
             </button>

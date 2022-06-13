@@ -50,6 +50,7 @@ const Navbar = () => {
           type="text"
           placeholder="Search"
           ref={searchInputRef}
+          data-testid="search-bar-test"
           onChange={searchUsersHandler}
         />
         <div className="icons-container-navbar">
@@ -58,6 +59,7 @@ const Navbar = () => {
             className="home-btn"
             onClick={homeHandler}
             aria-label="Home"
+            data-testid="home-page-btn-test-navbar"
           />
           <button
             type="button"
@@ -68,6 +70,7 @@ const Navbar = () => {
           <button
             type="button"
             className="addNewPost-btn"
+            data-testid="new-post-page-btn"
             onClick={AddNewPostHandler}
             aria-label="Add new post"
           />
@@ -88,12 +91,13 @@ const Navbar = () => {
             className="profile-btn"
             onClick={openProfileHandler}
             aria-label="Profile"
+            data-testid="profile-page-btn-test-navbar"
           />
         </div>
       </div>
 
       {searching && (
-        <div className="search-container" data-testid="search-bar-navbar">
+        <div className="search-container">
           {searchResultFinal.map((username: string) => {
             return (
               <button
@@ -108,6 +112,7 @@ const Navbar = () => {
             className="close-btn-search"
             type="button"
             onClick={closeSearchBarHandler}
+            data-testid="search-bar-close-navbar-test"
           >
             <img
               src="https://www.svgrepo.com/show/81335/cancel.svg"

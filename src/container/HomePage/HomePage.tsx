@@ -38,7 +38,6 @@ const HomePage = () => {
       <Navbar />
       <div className="main-content-container" data-testid="homepage-test">
         <div className="story-posts-container">
-          {/* <StoryBox />     */}
           {posts.map((items: any) => {
             return (
               <Card data={items} key={Math.floor(Math.random() * 1000000)} />

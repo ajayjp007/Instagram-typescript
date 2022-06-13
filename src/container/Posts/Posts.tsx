@@ -58,25 +58,26 @@ const Posts = () => {
 
   if (postsData.length === 0) {
     return (
-      <div className="no-posts-yet-container">
+      <div className="no-posts-yet-container" data-testid="posts-document-test">
         <img
           src="http://cdn.onlinewebfonts.com/svg/img_563604.png"
           alt="No Posts Yet"
           className="no-posts-yet-image"
         />
-        <p>No Posts Yet.</p>
+        <p data-testid="no-posts-yet-test">No Posts Yet.</p>
       </div>
     );
   }
 
   return (
-    <div className="user-posts-container" data-testid="Posts-renderer">
+    <div className="user-posts-container" data-testid="posts-document-test">
       {postsData.map((element: any) => {
         return (
           <button
             onClick={openPostHandler}
             type="button"
             className="post-container-profile"
+            data-testid="open-post-btn-test"
             id={element._id}
           >
             <img

@@ -130,6 +130,7 @@ const Card = (props: Props) => {
             <button
               type="button"
               className="modal-footer-content"
+              data-testid="close-modal-button-test"
               onClick={closeModalHandler}
             >
               <img
@@ -156,6 +157,7 @@ const Card = (props: Props) => {
             <button
               aria-label="comment"
               type="button"
+              data-testid="open-comments-button-test"
               className="comment-icon-btn-card"
               onClick={openCommentsHandler}
             />
@@ -169,6 +171,7 @@ const Card = (props: Props) => {
             aria-label="save post"
             type="button"
             onClick={savePostHandler}
+            data-testid="post-save-button-test"
             className={
               !postSaved ? 'save-posts-icon-btn' : 'saved-posts-icon-btn'
             }
@@ -183,6 +186,7 @@ const Card = (props: Props) => {
           <button
             type="button"
             className="grey-color-text-card-bottom"
+            data-testid="open-comments-btn-test"
             onClick={openCommentsHandler}
           >
             View all comments
@@ -195,14 +199,23 @@ const Card = (props: Props) => {
           <Comments comments={props.data.comment} postId={props.data._id} />
         )}
       </div>
-      <form className="add-comments-container" onSubmit={postCommentsHandler}>
+      <form
+        className="add-comments-container"
+        onSubmit={postCommentsHandler}
+        data-testid="comment-submit-form-test"
+      >
         <input
           type="text"
           className="comments-input"
           placeholder="Add a comment..."
+          data-testid="input-comment-card-text"
           ref={inputCommentRef}
         />
-        <button className="post-btn" type="submit">
+        <button
+          className="post-btn"
+          type="submit"
+          data-testid="post-btn-card-bottom-test"
+        >
           {commentPosted ? 'Posting...' : 'Post'}
         </button>
       </form>

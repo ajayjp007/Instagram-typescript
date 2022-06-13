@@ -40,7 +40,7 @@ const Comments: React.FC<Props> = (props) => {
       .catch((error) => error);
   };
   return (
-    <div className="comment-container" data-testId="comment-section-test">
+    <div className="comment-container" data-testid="comment-section-test">
       {props.comments.map((items) => {
         return (
           <div
@@ -54,6 +54,7 @@ const Comments: React.FC<Props> = (props) => {
                 type="button"
                 aria-label="Delete comment"
                 onClick={popUpHandler}
+                data-testid="delete-comment-btn-test"
                 className="delete-comment-icon"
                 id={items._id}
               />
@@ -62,21 +63,28 @@ const Comments: React.FC<Props> = (props) => {
         );
       })}
       {showPOpUp && (
-        <div className="popup-message-main-container">
+        <div
+          className="popup-message-main-container"
+          data-testid="delete-pop-up-message-test"
+        >
           <div className="popup-message-container">
             {!deleteSuccessful && (
               <p className="popup-message">
                 Are you sure you want to delete the comment?
               </p>
             )}
-            {deleteSuccessful && <p>Your comment was deleted.</p>}
+            {deleteSuccessful && (
+              <p data-testid="comment-was-successfully-deleted-test">
+                Your comment was deleted.
+              </p>
+            )}
             {!deleteSuccessful && (
               <div className="popup-btns-container">
                 <button
                   className="pop-up-btns confirm"
                   onClick={deleteCommentHandler}
                   type="button"
-                  data-testid="delete-comment-test"
+                  data-testid="confirm-comment-delete-test"
                 >
                   Yes
                 </button>

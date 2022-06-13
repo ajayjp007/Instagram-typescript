@@ -53,7 +53,7 @@ const SignUp = () => {
   };
 
   return (
-    <div className="sign-up-main-container" data-testid="Signup-elem">
+    <div className="sign-up-main-container" data-testid="Signup-elem-test">
       {signedUp && <Navigate to="/" />}
       <img
         src="https://images.unsplash.com/photo-1505356822725-08ad25f3ffe4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80"
@@ -67,7 +67,11 @@ const SignUp = () => {
           id="logo-signup"
           alt=""
         />
-        <form className="sign-up-form-container" onSubmit={signUpHandler}>
+        <form
+          className="sign-up-form-container"
+          onSubmit={signUpHandler}
+          data-testid="signup-form-test"
+        >
           <input
             required
             ref={inputEmailRef}
@@ -115,6 +119,7 @@ const SignUp = () => {
           <button
             aria-label="Save"
             type="button"
+            data-testid="terms-conditions-icon-btn-test"
             className={
               !notChecked ? 'icon-sign-up-terms' : 'icon-sign-up-terms-tick'
             }

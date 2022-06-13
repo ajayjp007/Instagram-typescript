@@ -60,7 +60,7 @@ const Login = () => {
           <form
             className="form-login"
             onSubmit={loginHandler}
-            data-testid="form-submit-login"
+            data-testid="form-submit-login-test"
           >
             <input
               required
@@ -76,16 +76,15 @@ const Login = () => {
               className="input-login"
               type="password"
             />
-            <button
-              className="login-btn"
-              type="submit"
-              data-testid="form-submit-btn-login"
-            >
+            <button className="login-btn" type="submit">
               Log In
             </button>
           </form>
           {loginFailed && (
-            <p className="warning-messages" data-testid="login-failed-message">
+            <p
+              data-testid="login-warning-text-test"
+              className="warning-messages"
+            >
               Wrong username or password
             </p>
           )}

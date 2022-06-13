@@ -56,6 +56,7 @@ const AddNewFriends = () => {
             <button
               type="button"
               id={element.email}
+              data-testid="view-Other-users-btn"
               className="user-name-AddNewFriends"
               onClick={viewOtherProfileHandler}
             >
