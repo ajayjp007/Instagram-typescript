@@ -49,6 +49,9 @@
 
 .post-about-posts {
   height: 50%;
+  background-color: white;
+  margin-right: 5px;
+  border-radius: 10px;
 }
 
 .option-items-about {
