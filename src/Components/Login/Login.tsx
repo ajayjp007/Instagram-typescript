@@ -1,10 +1,12 @@
 import React, { useRef, useState } from 'react';
 import './Login.css';
 import { Navigate } from 'react-router-dom';
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 
 const Login = () => {
   const [loginSuccess, setLoginSucess] = useState<boolean>(false);
   const [loginFailed, setLoginFailed] = useState<boolean>(false);
+  const [loading, setIsLoading] = useState<boolean>(false);
   const usernameInputRef = useRef<HTMLInputElement>(null);
   const passwordInputRef = useRef<HTMLInputElement>(null);
 
@@ -23,6 +25,7 @@ const Login = () => {
       redirect: 'follow',
     };
     const fetchData = async () => {
+      setIsLoading(true);
       await fetch('http://localhost:5000/api/users/login', requestOptions)
         .then((response) => response.json())
         .then((result) => {
@@ -30,13 +33,16 @@ const Login = () => {
           localStorage.setItem('userName', result.username);
           localStorage.setItem('emailId', usernameInputRef.current!.value);
           if (result.errors === '') {
+            setIsLoading(false);
             setLoginSucess(true);
             setLoginFailed(true);
           } else {
+            setIsLoading(false);
             setLoginSucess(false);
           }
         })
         .catch(() => {
+          setIsLoading(false);
           setLoginFailed(true);
         });
     };
@@ -77,7 +83,7 @@ const Login = () => {
               type="password"
             />
             <button className="login-btn" type="submit">
-              Log In
+              {loading ? <LoadingSpinner /> : 'Log In'}
             </button>
           </form>
           {loginFailed && (

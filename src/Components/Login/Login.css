@@ -54,6 +54,9 @@ body {
   margin-top: 20px;
   margin-bottom: 20px;
   height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: white;
   background-color: #73c2fb;
   cursor: pointer;

@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Navigate } from 'react-router-dom';
 import Button from '../../Components/Button/Button';
 import './AddNewFriends.css';
 
 const AddNewFriends = () => {
-  const [viewOtherProfile, setViewOtherProfile] = useState<boolean>(false);
   const dispatch = useDispatch();
+  const [viewOtherProfile, setViewOtherProfile] = useState<boolean>(false);
   const allUsers = useSelector((state: any) => state.users.users);
   const viewOtherProfileHandler = (event: any | undefined) => {
     localStorage.setItem('viewProfile', event.target.id);

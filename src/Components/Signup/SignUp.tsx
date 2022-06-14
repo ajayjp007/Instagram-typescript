@@ -1,11 +1,14 @@
 import React, { useState, useRef } from 'react';
 import { Navigate } from 'react-router-dom';
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import './SignUp.css';
 
 const SignUp = () => {
   const [notChecked, setNotChecked] = useState<boolean>(true);
   const [signedUp, setSignedUp] = useState<boolean>(false);
   const [failed, setFailed] = useState<boolean>(false);
+  const [loading, setIsLoading] = useState<boolean>(false);
+  const [signUpError, setSignUpErrors] = useState<any>();
   const inputNameRef = useRef<HTMLInputElement>(null);
   const inputUserNameRef = useRef<HTMLInputElement>(null);
   const inputEmailRef = useRef<HTMLInputElement>(null);
@@ -16,6 +19,7 @@ const SignUp = () => {
   };
   const signUpHandler = (event: React.FormEvent) => {
     event.preventDefault();
+    setIsLoading(true);
     if (inputEmailRef.current!.value.trim().length === 0) {
       setFailed(true);
     } else if (inputNameRef.current!.value.trim().length === 0) {
@@ -44,9 +48,15 @@ const SignUp = () => {
       .then((result) => {
         if (result.errors === '') {
           setSignedUp(true);
+        } else {
+          setIsLoading(false);
+          console.log(result.errors);
+          setFailed(true);
+          setSignUpErrors(result.errors);
         }
       })
       .catch(() => {
+        setIsLoading(false);
         setFailed(true);
         setSignedUp(false);
       });
@@ -112,7 +122,7 @@ const SignUp = () => {
             className="sign-up-btn"
             data-testid="sign-up-btn-test"
           >
-            Sign up
+            {loading ? <LoadingSpinner /> : 'Sign up'}
           </button>
         </form>
         <p className="terms-and-conditions">
@@ -129,7 +139,7 @@ const SignUp = () => {
         </p>
         {failed && (
           <p className="warning-messages" data-testid="warning-message-signup">
-            Please check your inputs.
+            {signUpError}
           </p>
         )}
         {notChecked && (
